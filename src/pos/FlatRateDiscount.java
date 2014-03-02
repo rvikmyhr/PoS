@@ -13,12 +13,12 @@ package pos;
 public class FlatRateDiscount implements DiscountStategy {
     
     private double flatRateAmnt;
-    private double price;
-    private double qty;
     
     public FlatRateDiscount(double flatRateAmnt){
         setFlatRateAmnt(flatRateAmnt);
     }
+    
+    @Override
     public double getDiscount(double price, double qty){
         return (price * qty)-(flatRateAmnt);
     }
@@ -29,26 +29,6 @@ public class FlatRateDiscount implements DiscountStategy {
 
     public void setFlatRateAmnt(double flatRateAmnt) {
         this.flatRateAmnt = flatRateAmnt;
-    }
-
-    @Override
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    @Override
-    public double getQty() {
-        return qty;
-    }
-
-    @Override
-    public void setQty(double qty) {
-        this.qty = qty;
     }
     
 }

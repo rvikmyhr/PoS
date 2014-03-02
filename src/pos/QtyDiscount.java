@@ -20,6 +20,7 @@ public class QtyDiscount implements DiscountStategy {
         setQtyDiscount(qtyDiscount);
     }
 
+    @Override
     public double getDiscount(double price, double qty) {
         double discount = 0;
         if (qty >= minQty) {
@@ -35,27 +36,7 @@ public class QtyDiscount implements DiscountStategy {
     public void setQtyDiscount(double qtyDiscount) {
         this.qtyDiscount = qtyDiscount;
     }
-
-    @Override
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    @Override
-    public double getQty() {
-        return qty;
-    }
-
-    @Override
-    public void setQty(double qty) {
-        this.qty = qty;
-    }
-
+    
     public double getMinQty() {
         return minQty;
     }
@@ -63,6 +44,5 @@ public class QtyDiscount implements DiscountStategy {
     public void setMinQty(double minQty) {
         this.minQty = minQty;
     }
-
-    
+  
 }

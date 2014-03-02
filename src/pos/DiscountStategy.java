@@ -14,12 +14,4 @@ public interface DiscountStategy {
 
     double getDiscount(double price, double qty);
     
-    double getPrice();
-
-    double getQty();
-
-    void setPrice(double price);
-
-    void setQty(double qty);
-    
 }

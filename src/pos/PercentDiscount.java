@@ -13,13 +13,12 @@ package pos;
 public class PercentDiscount implements DiscountStategy {
     
     private double percent;
-    private double price;
-    private double qty;
 
     public PercentDiscount(double percent){
         setPercent(percent);
     }
     
+    @Override
     public double getDiscount(double price, double qty){     
         return price * qty * percent;
     }
@@ -31,27 +30,13 @@ public class PercentDiscount implements DiscountStategy {
     public void setPercent(double percent) {
         this.percent = percent;
     }
-
-    @Override
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    @Override
-    public double getQty() {
-        return qty;
-    }
-
-    @Override
-    public void setQty(double qty) {
-        this.qty = qty;
-    }
-
     
+    public static void main(String[] args) {
+        
+        DiscountStategy discStrat = new PercentDiscount(.50);
+ 
+        System.out.println(discStrat.getDiscount(100,3));    
+              
+    }
     
 }
