@@ -17,18 +17,18 @@ public class Receipt {
     private LineItem[] line;
     private Date date = new Date();
     private double totalTax;
+    private double grandTotal;
     
     public Receipt(double totalTax){
         setTotalTax(totalTax);
-        
     }
 
-    public Date getDateTime() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDateTime(Date dateTime) {
-        this.date = dateTime;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public double getTotalTax() {

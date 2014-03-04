@@ -15,8 +15,6 @@ public class LineItem {
     private double subTotal;
     private Product item;
     
-    
-    
     public LineItem(Product item){
         setItem(item);
     }
@@ -42,22 +40,22 @@ public class LineItem {
         this.item = item;
     }
     
-//    @Override
-//    public String toString() {
-//        return "LineItem{" + "subTotal=" + subTotal + ", itemID=" + item.getProductID() + ", itemName=" + item.getProductName() +", itemPrice=" + item.getPrice() + ", itemDiscountedPrice=" + item.getDiscount() + '}';
-//    }
-//    
-//    public static void main(String[] args) {
-//        DiscountStrategy discount = new PercentDiscount(.10);
-//        
-//        Product thing = new Product("a11","hat", 50, discount);
-//        
-//        LineItem item = new LineItem(thing);
-//        
-//        item.getCalcSubTotal(thing, 2);
-//        
-//        System.out.println(item.toString());
-//        
-//    }
+    @Override
+    public String toString() {
+        return "LineItem{" + "subTotal=" + subTotal + ", itemID=" + item.getProductID() + ", itemName=" + item.getProductName() +", itemPrice=" + item.getPrice() + ", itemDiscountedPrice=" + item.getDiscount().getAmountSaved(subTotal, subTotal) + '}';
+    }
+    
+    public static void main(String[] args) {
+        DiscountStrategy discount = new PercentDiscount(.10);
+        
+        Product thing = new Product("a11","hat", 50, discount);
+        
+        LineItem item = new LineItem(thing);
+        
+        item.getCalcSubTotal(thing, 2);
+        
+        System.out.println(item.toString());
+        
+    }
     
 }
