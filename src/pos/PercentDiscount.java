@@ -10,7 +10,7 @@ package pos;
  *
  * @author Ron
  */
-public class PercentDiscount implements DiscountStategy {
+public class PercentDiscount implements DiscountStrategy {
     
     private double percent;
 
@@ -19,7 +19,11 @@ public class PercentDiscount implements DiscountStategy {
     }
     
     @Override
-    public double getDiscount(double price, double qty){     
+    public double getDiscountedPrice(double price, double qty){     
+        return (price * qty) - (price * qty * percent);
+    }
+    
+    public double getAmountSaved(double price, double qty){
         return price * qty * percent;
     }
 
@@ -31,12 +35,12 @@ public class PercentDiscount implements DiscountStategy {
         this.percent = percent;
     }
     
-    public static void main(String[] args) {
-        
-        DiscountStategy discStrat = new PercentDiscount(.50);
- 
-        System.out.println(discStrat.getDiscount(100,3));    
-              
-    }
+//    public static void main(String[] args) {
+//        
+//        DiscountStrategy discStrat = new PercentDiscount(.50);
+// 
+//        System.out.println(discStrat.getDiscountedPrice(100,3));    
+//              
+//    }
     
 }

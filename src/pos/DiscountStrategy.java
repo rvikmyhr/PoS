@@ -10,8 +10,9 @@ package pos;
  *
  * @author Ron
  */
-public interface DiscountStategy {
+public interface DiscountStrategy {
 
-    double getDiscount(double price, double qty);
+    public abstract double getDiscountedPrice(double price, double qty);
+    public abstract double getAmountSaved(double price, double qty);
     
 }

@@ -14,13 +14,13 @@ public class Product {
     private String productID;
     private String productName;
     private double price;
+    private DiscountStrategy discount;
     
-    public Product(String productID, double qty,){
+    public Product(String productID, String productName, double price, DiscountStrategy discount){
         setProductID(productID);
-    }
-    
-    public double getDiscount(DiscountStategy discount, double qty){
-        return discount.getDiscount(price, qty);
+        setProductName(productName);
+        setPrice(price);
+        setDiscount(discount);
     }
 
     public String getProductID() {
@@ -46,6 +46,24 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-    
+
+    public DiscountStrategy getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(DiscountStrategy discount) {
+        this.discount = discount;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Product{" + "productID=" + productID + ", productName=" + productName + ", price=" + price + ", discount=" + discount.getDiscountedPrice(price, 1) + '}';
+//    }
+//    
+//    public static void main(String[] args) {
+//        
+//        Product thing = new Product("T100","Thing",19.99, new PercentDiscount(.10));
+//        System.out.println(thing.toString());
+//    }
     
 }

@@ -10,6 +10,6 @@ package pos;
  *
  * @author rvikmyhr
  */
-public class CashRegister {
+public class CheckOutRegister {
     
 }

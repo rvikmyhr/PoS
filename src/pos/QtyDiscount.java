@@ -9,7 +9,7 @@ package pos;
  *
  * @author Ron
  */
-public class QtyDiscount implements DiscountStategy {
+public class QtyDiscount implements DiscountStrategy {
 
     private double qtyDiscount;
     private double price;
@@ -21,12 +21,20 @@ public class QtyDiscount implements DiscountStategy {
     }
 
     @Override
-    public double getDiscount(double price, double qty) {
+    public double getDiscountedPrice(double price, double qty) {
         double discount = 0;
         if (qty >= minQty) {
              discount = (qty * price) - qtyDiscount;
         }
         return discount;
+    }
+    
+    public double getAmountSaved(double price, double qty) {
+        double saved = 0;
+        if (qty >= minQty) {
+             saved = qtyDiscount;
+        }
+        return saved;
     }
 
     public double getQtyDiscount() {

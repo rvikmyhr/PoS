@@ -12,14 +12,52 @@ package pos;
  */
 public class LineItem {
     
-    private LineItem[] lineItem = new LineItem[0];
     private double subTotal;
+    private Product item;
     
-    public LineItem(Product prod){
-     
+    
+    
+    public LineItem(Product item){
+        setItem(item);
+    }
+
+    public double getCalcSubTotal(Product item, double qty){
+        subTotal = item.getPrice() * qty - item.getDiscount().getAmountSaved(item.getPrice(), qty);
+        return subTotal;
+    }
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public Product getItem() {
+        return item;
+    }
+
+    public void setItem(Product item) {
+        this.item = item;
     }
     
-    public double getSubTotal(Product prod, double qty){
-        return prod.getPrice() * qty;
-    }
+//    @Override
+//    public String toString() {
+//        return "LineItem{" + "subTotal=" + subTotal + ", itemID=" + item.getProductID() + ", itemName=" + item.getProductName() +", itemPrice=" + item.getPrice() + ", itemDiscountedPrice=" + item.getDiscount() + '}';
+//    }
+//    
+//    public static void main(String[] args) {
+//        DiscountStrategy discount = new PercentDiscount(.10);
+//        
+//        Product thing = new Product("a11","hat", 50, discount);
+//        
+//        LineItem item = new LineItem(thing);
+//        
+//        item.getCalcSubTotal(thing, 2);
+//        
+//        System.out.println(item.toString());
+//        
+//    }
+    
 }

@@ -10,7 +10,7 @@ package pos;
  *
  * @author Ron
  */
-public class FlatRateDiscount implements DiscountStategy {
+public class FlatRateDiscount implements DiscountStrategy {
     
     private double flatRateAmnt;
     
@@ -19,8 +19,12 @@ public class FlatRateDiscount implements DiscountStategy {
     }
     
     @Override
-    public double getDiscount(double price, double qty){
+    public double getDiscountedPrice(double price, double qty){
         return (price * qty)-(flatRateAmnt);
+    }
+    @Override
+    public double getAmountSaved(double price, double qty){
+        return flatRateAmnt * qty;
     }
 
     public double getFlatRateAmnt() {

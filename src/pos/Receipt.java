@@ -6,10 +6,44 @@
 
 package pos;
 
+import java.util.Date;
+
 /**
  *
  * @author rvikmyhr
  */
 public class Receipt {
+    
+    private LineItem[] line;
+    private Date date = new Date();
+    private double totalTax;
+    
+    public Receipt(double totalTax){
+        setTotalTax(totalTax);
+        
+    }
+
+    public Date getDateTime() {
+        return date;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.date = dateTime;
+    }
+
+    public double getTotalTax() {
+        return totalTax;
+    }
+
+    public void setTotalTax(double totalTax) {
+        this.totalTax = totalTax;
+    }
+
+    @Override
+    public String toString() {
+        return "Receipt{" + "line=" + line + ", date=" + date + ", totalTax=" + totalTax + '}';
+    }
+    
+    
     
 }
