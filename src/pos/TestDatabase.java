@@ -9,13 +9,14 @@ package pos;
  *
  * @author Ron
  */
-public class TestDatabase {
+public class TestDatabase implements DatabaseStrategy {
 
-    private Product[] products = {new Product("000", "Cola", 1.99, new QtyDiscount(.99)),
+    private final Product[] products = {new Product("000", "Cola", 1.99, new QtyDiscount(.99)),
         new Product("001", "Clock", 9.99, new FlatRateDiscount(1.99)),
         new Product("002", "Purse", 49.99, new PercentDiscount(.15))
     };
     
+    @Override
     public final Product findProduct(final String id) {
         Product product = null;
         if (id == null || id.length() == 0) {

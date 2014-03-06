@@ -12,49 +12,80 @@ package pos;
  */
 public class LineItem {
     
+    private double qty;
     private double subTotal;
-    private Product item;
+    private double totalDiscount;
+    private Product product;
+    private DatabaseStrategy database;
     
-    public LineItem(Product item){
-        setItem(item);
+    public LineItem(DatabaseStrategy database, String productID, double qty){
+        this.database = database;
+        this.product = findProduct(productID);
+        setQty(qty);
+    }
+    
+    public final Product findProduct(String productID){
+        return database.findProduct(productID);
+    }
+    
+    public final double getCalcSubTotal(){
+        subTotal = product.getPrice() * qty;
+        return subTotal;
+    }
+    
+    public final double getTotalDiscount(){
+        totalDiscount = product.getDiscountedPrice(qty);
+        return totalDiscount;
     }
 
-    public double getCalcSubTotal(Product item, double qty){
-        subTotal = item.getPrice() * qty - item.getDiscount().getAmountSaved(item.getPrice(), qty);
+    public final double getSubTotal() {
         return subTotal;
     }
 
-    public double getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(double subTotal) {
+    public final void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
 
-    public Product getItem() {
-        return item;
+    public final Product getItem() {
+        return product;
     }
 
-    public void setItem(Product item) {
-        this.item = item;
+    public final void setItem(Product item) {
+        this.product = item;
+    }
+
+    public final double getQty() {
+        return qty;
+    }
+
+    public final void setQty(double qty) {
+        this.qty = qty;
+    }
+
+    public final Product getProduct() {
+        return product;
+    }
+
+    public final void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public final DatabaseStrategy getDatabase() {
+        return database;
+    }
+
+    public final void setDatabase(DatabaseStrategy database) {
+        this.database = database;
     }
     
-    @Override
-    public String toString() {
-        return "LineItem{" + "subTotal=" + subTotal + ", itemID=" + item.getProductID() + ", itemName=" + item.getProductName() +", itemPrice=" + item.getPrice() + ", itemDiscountedPrice=" + item.getDiscount().getAmountSaved(subTotal, subTotal) + '}';
-    }
     
     public static void main(String[] args) {
         DiscountStrategy discount = new PercentDiscount(.10);
+        DatabaseStrategy db = new TestDatabase();
         
-        Product thing = new Product("a11","hat", 50, discount);
+        LineItem item = new LineItem(db,"000",3);
         
-        LineItem item = new LineItem(thing);
-        
-        item.getCalcSubTotal(thing, 2);
-        
-        System.out.println(item.toString());
+        System.out.println();
         
     }
     

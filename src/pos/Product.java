@@ -22,6 +22,14 @@ public class Product {
         setPrice(price);
         setDiscount(discount);
     }
+    
+    public double getAmountSaved(double qty){
+        return discount.getAmountSaved(price, qty);
+    }
+    
+    public double getDiscountedPrice(double qty){
+        return discount.getDiscountedPrice(price, qty);
+    }
 
     public String getProductID() {
         return productID;
@@ -54,6 +62,8 @@ public class Product {
     public void setDiscount(DiscountStrategy discount) {
         this.discount = discount;
     }
+    
+    
 
 //    @Override
 //    public String toString() {
