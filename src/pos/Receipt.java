@@ -40,14 +40,14 @@ public class Receipt {
         addToArray(lineItem);
     }
     
-    private void addToArray(LineItem item) {
+    public void addToArray(LineItem item) {
         LineItem[] temp = new LineItem[line.length + 1];
         System.arraycopy(line, 0, temp, 0, line.length);
         temp[line.length] = item;
         line = temp;
     }
     
-    private void printReceipt(){
+    public void printReceipt(){
         System.out.println(date);
 
         for (LineItem x: line){       

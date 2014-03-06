@@ -23,43 +23,43 @@ public class Product {
         setDiscount(discount);
     }
     
-    public double getAmountSaved(double qty){
+    public final double getAmountSaved(double qty){
         return discount.getAmountSaved(price, qty);
     }
     
-    public double getDiscountedPrice(double qty){
+    public final double getDiscountedPrice(double qty){
         return discount.getDiscountedPrice(price, qty);
     }
 
-    public String getProductID() {
+    public final String getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
+    public final void setProductID(String productID) {
         this.productID = productID;
     }
 
-    public String getProductName() {
+    public final String getProductName() {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public final void setProductName(String productName) {
         this.productName = productName;
     }
 
-    public double getPrice() {
+    public final double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public final void setPrice(double price) {
         this.price = price;
     }
 
-    public DiscountStrategy getDiscount() {
+    public final DiscountStrategy getDiscount() {
         return discount;
     }
 
-    public void setDiscount(DiscountStrategy discount) {
+    public final void setDiscount(DiscountStrategy discount) {
         this.discount = discount;
     }
     

@@ -79,14 +79,14 @@ public class LineItem {
     }
     
     
-    public static void main(String[] args) {
-        DiscountStrategy discount = new PercentDiscount(.10);
-        DatabaseStrategy db = new TestDatabase();
-        
-        LineItem item = new LineItem(db,"000",3);
-        
-        System.out.println();
-        
-    }
+//    public static void main(String[] args) {
+//        DiscountStrategy discount = new PercentDiscount(.10);
+//        DatabaseStrategy db = new TestDatabase();
+//        
+//        LineItem item = new LineItem(db,"000",3);
+//        
+//        System.out.println();
+//        
+//    }
     
 }

@@ -13,10 +13,23 @@ package pos;
 public class CheckOutRegister {
     private Receipt receipt;
     
+    public CheckOutRegister(){
+        
+    }
+    
     public void ScanItem(String productID, int qty){
         receipt.addLineItem(productID, qty);
     }
     public void startNewSale(){
         receipt = new Receipt();
     }
+
+    public Receipt getReceipt() {
+        return receipt;
+    }
+
+    public void setReceipt(Receipt receipt) {
+        this.receipt = receipt;
+    }
+    
 }
