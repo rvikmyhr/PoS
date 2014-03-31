@@ -19,11 +19,23 @@ public class FlatRateDiscount implements DiscountStrategy {
     }
     
     @Override
-    public double getDiscountedPrice(double price, double qty){
+    public double getDiscountedPrice(double price, double qty) throws IllegalArgumentException{
+        if (price <= 0){
+            throw new IllegalPriceException();
+        }
+        if (qty <= 0){
+            throw new IllegalQtyException();
+        }
         return (price * qty)-(flatRateAmnt);
     }
     @Override
-    public double getAmountSaved(double price, double qty){
+    public double getAmountSaved(double price, double qty) throws IllegalArgumentException{
+        if (price <= 0){
+            throw new IllegalPriceException();
+        }
+        if (qty <= 0){
+            throw new IllegalQtyException();
+        }
         return flatRateAmnt * qty;
     }
 
@@ -31,7 +43,10 @@ public class FlatRateDiscount implements DiscountStrategy {
         return flatRateAmnt;
     }
 
-    public void setFlatRateAmnt(double flatRateAmnt) {
+    public void setFlatRateAmnt(double flatRateAmnt) throws IllegalArgumentException{
+        if (flatRateAmnt <= 0) {
+            throw new IllegalDiscountException();
+        }
         this.flatRateAmnt = flatRateAmnt;
     }
     

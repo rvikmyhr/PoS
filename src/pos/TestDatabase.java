@@ -17,7 +17,10 @@ public class TestDatabase implements DatabaseStrategy {
     };
     
     @Override
-    public final Product findProduct(final String id) {
+    public final Product findProduct(final String id) throws IllegalArgumentException{
+        if (id == null || id.length() == 0){
+            throw new IllegalArgumentException("ID needed");
+        }
         Product product = null;
         if (id == null || id.length() == 0) {
             System.out.println("Invalid ID");

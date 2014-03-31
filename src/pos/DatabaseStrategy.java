@@ -11,5 +11,5 @@ package pos;
  * @author rvikmyhr
  */
 public interface DatabaseStrategy {
-    public abstract Product findProduct(String id);
+    public abstract Product findProduct(final String productID);
 }

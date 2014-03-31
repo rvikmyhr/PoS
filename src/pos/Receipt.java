@@ -15,9 +15,15 @@ import java.util.Date;
 public class Receipt {
     
     private LineItem[] line;
-    private Date date = new Date();
+    private Date date;
     private DatabaseStrategy database;
     private double totalTax;
+    
+    public Receipt() {
+        line = new LineItem[0];
+        date = new Date();
+        database = new TestDatabase();
+    }
     
     public double getCalcTotalDiscounts(){
         double totalDis = 0;
@@ -35,12 +41,21 @@ public class Receipt {
         return totalPrice;
     }
     
-    public final void addLineItem(String productID, int qty) {
+    public final void addLineItem(final String productID, final double qty) throws IllegalArgumentException {
+        if (productID == null || productID.length() == 0){
+            throw new IllegalArgumentException("Must have a value");
+        }
+        if (qty <= 0){
+            throw new IllegalQtyException();
+        }
         LineItem lineItem = new LineItem(database, productID, qty);
         addToArray(lineItem);
     }
     
-    public void addToArray(LineItem item) {
+    public void addToArray(LineItem item) throws IllegalArgumentException {
+        if (item == null){
+            throw new NullObjectException();
+        }
         LineItem[] temp = new LineItem[line.length + 1];
         System.arraycopy(line, 0, temp, 0, line.length);
         temp[line.length] = item;
@@ -63,7 +78,10 @@ public class Receipt {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Date date) throws IllegalArgumentException {
+        if (date == null){
+            throw new NullObjectException();
+        }
         this.date = date;
     }
 
@@ -71,7 +89,10 @@ public class Receipt {
         return totalTax;
     }
 
-    public void setTotalTax(double totalTax) {
+    public void setTotalTax(double totalTax) throws IllegalArgumentException {
+        if (totalTax < 0){
+            throw new IllegalArgumentException("Invalid amount");
+        }
         this.totalTax = totalTax;
     }
       

@@ -20,11 +20,14 @@ public class LineItem {
     
     public LineItem(DatabaseStrategy database, String productID, double qty){
         this.database = database;
-        this.product = findProduct(productID);
+        product = findProduct(productID);
         setQty(qty);
     }
     
-    public final Product findProduct(String productID){
+    public final Product findProduct(String productID) throws IllegalArgumentException{
+        if (productID == null || productID.length() == 0){
+            throw new IllegalArgumentException("Needs a product ID");
+        }
         return database.findProduct(productID);
     }
     
@@ -42,7 +45,10 @@ public class LineItem {
         return subTotal;
     }
 
-    public final void setSubTotal(double subTotal) {
+    public final void setSubTotal(double subTotal) throws IllegalArgumentException {
+        if (subTotal <= 0){
+            throw new IllegalArgumentException("Invalid subtotal");
+        }
         this.subTotal = subTotal;
     }
 
@@ -50,7 +56,10 @@ public class LineItem {
         return product;
     }
 
-    public final void setItem(Product item) {
+    public final void setItem(Product item) throws IllegalArgumentException{
+        if (item == null){
+            throw new NullObjectException();
+        }
         this.product = item;
     }
 
@@ -58,7 +67,10 @@ public class LineItem {
         return qty;
     }
 
-    public final void setQty(double qty) {
+    public final void setQty(double qty) throws IllegalArgumentException{
+        if (qty <= 0){
+            throw new IllegalQtyException();
+        }
         this.qty = qty;
     }
 
@@ -66,7 +78,10 @@ public class LineItem {
         return product;
     }
 
-    public final void setProduct(Product product) {
+    public final void setProduct(Product product) throws NullObjectException {
+        if (product == null){
+            throw new NullObjectException();
+        }
         this.product = product;
     }
 
@@ -74,11 +89,13 @@ public class LineItem {
         return database;
     }
 
-    public final void setDatabase(DatabaseStrategy database) {
+    public final void setDatabase(DatabaseStrategy database) throws IllegalArgumentException {
+        if (database == null){
+            throw new NullObjectException();
+        }
         this.database = database;
     }
-    
-    
+       
 //    public static void main(String[] args) {
 //        DiscountStrategy discount = new PercentDiscount(.10);
 //        DatabaseStrategy db = new TestDatabase();

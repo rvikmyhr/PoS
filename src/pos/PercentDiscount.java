@@ -19,11 +19,23 @@ public class PercentDiscount implements DiscountStrategy {
     }
     
     @Override
-    public double getDiscountedPrice(double price, double qty){     
+    public double getDiscountedPrice(double price, double qty) throws IllegalArgumentException{
+        if (price <= 0){
+            throw new IllegalPriceException();
+        }
+        if (qty <= 0){
+            throw new IllegalQtyException();
+        }
         return (price * qty) - (price * qty * percent);
     }
     
     public double getAmountSaved(double price, double qty){
+        if (price <= 0){
+            throw new IllegalPriceException();
+        }
+        if (qty <= 0){
+            throw new IllegalQtyException();
+        }
         return price * qty * percent;
     }
 
@@ -31,7 +43,10 @@ public class PercentDiscount implements DiscountStrategy {
         return percent;
     }
 
-    public void setPercent(double percent) {
+    public void setPercent(double percent) throws IllegalArgumentException {
+        if (percent <= 0){
+            throw new IllegalDiscountException();
+        }
         this.percent = percent;
     }
     

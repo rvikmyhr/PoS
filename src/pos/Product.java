@@ -23,11 +23,17 @@ public class Product {
         setDiscount(discount);
     }
     
-    public final double getAmountSaved(double qty){
+    public final double getAmountSaved(double qty) throws IllegalArgumentException {
+        if (qty <= 0) {
+            throw new IllegalQtyException();
+        }
         return discount.getAmountSaved(price, qty);
     }
     
-    public final double getDiscountedPrice(double qty){
+    public final double getDiscountedPrice(double qty) throws IllegalArgumentException {
+        if (qty <=0) {
+            throw new IllegalQtyException();
+        }
         return discount.getDiscountedPrice(price, qty);
     }
 
@@ -35,7 +41,10 @@ public class Product {
         return productID;
     }
 
-    public final void setProductID(String productID) {
+    public final void setProductID(String productID) throws IllegalArgumentException {
+        if (productID == null || productID.length() <= 0){
+            throw new IllegalArgumentException("Need product ID");
+        }
         this.productID = productID;
     }
 
@@ -43,7 +52,10 @@ public class Product {
         return productName;
     }
 
-    public final void setProductName(String productName) {
+    public final void setProductName(String productName) throws IllegalArgumentException {
+        if (productName == null || productName.length() <= 0){
+            throw new IllegalArgumentException("Need product name");
+        }
         this.productName = productName;
     }
 
@@ -51,7 +63,10 @@ public class Product {
         return price;
     }
 
-    public final void setPrice(double price) {
+    public final void setPrice(double price) throws IllegalArgumentException {
+        if (price <= 0){
+            throw new IllegalPriceException();
+        }
         this.price = price;
     }
 
@@ -59,7 +74,10 @@ public class Product {
         return discount;
     }
 
-    public final void setDiscount(DiscountStrategy discount) {
+    public final void setDiscount(DiscountStrategy discount) throws IllegalArgumentException {
+        if(discount == null){
+            throw new NullObjectException();
+        }
         this.discount = discount;
     }
     
